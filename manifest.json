@@ -1,0 +1,38 @@
+{
+    "name": "Mi PWA Basica",
+    "short_name": "PWA",
+    "description": "Una aplicación web progresiva básica",
+    "theme_color": "#1f2937",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "scope": "./",
+    "start_url": "./",
+    "screenshots": [
+        {
+            "src": "./images/icono-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "icons": [
+        {
+            "src": "./images/icono-192x192.png",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "any"
+        },
+        {
+            "src": "./images/icono-512x512.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any"
+        },
+        {
+            "src": "./images/maskable.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "maskable"
+        }
+    ]
+}

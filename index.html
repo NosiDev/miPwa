@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Movimiento Scout</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#166534">
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+<!-- NAV -->
+<header class="bg-green-800 text-white shadow">
+  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold">🏕️ Movimiento Scout</h1>
+
+    <nav class="space-x-4 text-sm hidden md:block">
+      <a class="hover:underline">Inicio</a>
+      <a class="hover:underline">Historia</a>
+      <a class="hover:underline">Ramas</a>
+      <a class="hover:underline">Actividades</a>
+      <a class="hover:underline">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="bg-gradient-to-r from-green-900 to-green-600 text-white">
+  <div class="container mx-auto px-4 py-16 text-center">
+    <h2 class="text-4xl font-bold mb-3">Ser Scout es un estilo de vida</h2>
+    <p class="text-green-100 mb-6 max-w-2xl mx-auto">
+      El Movimiento Scout educa en valores, liderazgo, trabajo en equipo y respeto por la naturaleza.
+    </p>
+
+    <button class="bg-white text-green-800 px-6 py-3 rounded font-bold">
+      Unirme al movimiento
+    </button>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="container mx-auto px-4 py-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+
+  <div class="bg-white p-5 rounded shadow text-center">
+    <p class="text-gray-500 text-sm">Scouts en el mundo</p>
+    <h3 class="text-2xl font-bold">57M+</h3>
+  </div>
+
+  <div class="bg-white p-5 rounded shadow text-center">
+    <p class="text-gray-500 text-sm">Países</p>
+    <h3 class="text-2xl font-bold">170+</h3>
+  </div>
+
+  <div class="bg-white p-5 rounded shadow text-center">
+    <p class="text-gray-500 text-sm">Años de historia</p>
+    <h3 class="text-2xl font-bold">+115</h3>
+  </div>
+
+  <div class="bg-white p-5 rounded shadow text-center">
+    <p class="text-gray-500 text-sm">Valores base</p>
+    <h3 class="text-2xl font-bold">10</h3>
+  </div>
+
+</section>
+
+<!-- HISTORIA -->
+<section class="container mx-auto px-4 py-10 bg-white rounded shadow">
+
+  <h2 class="text-2xl font-bold mb-4">📜 Historia del Movimiento Scout</h2>
+
+  <p class="mb-4 text-gray-700">
+    El Movimiento Scout fue fundado en 1907 por Robert Baden-Powell en Inglaterra. Su objetivo era educar a los jóvenes a través de la aventura, la naturaleza y el servicio comunitario.
+  </p>
+
+  <p class="text-gray-700">
+    Hoy en día, el movimiento está presente en casi todos los países del mundo y sigue promoviendo valores como la solidaridad, el respeto y el liderazgo juvenil.
+  </p>
+
+</section>
+
+<!-- RAMAS -->
+<section class="container mx-auto px-4 py-10 grid md:grid-cols-3 gap-6">
+
+  <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+    <h3 class="font-bold text-lg mb-2">🐺 Lobatos</h3>
+    <p>Niños de 7 a 11 años que aprenden jugando en manada.</p>
+  </div>
+
+  <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+    <h3 class="font-bold text-lg mb-2">⚜️ Scouts</h3>
+    <p>Adolescentes que desarrollan liderazgo y habilidades prácticas.</p>
+  </div>
+
+  <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+    <h3 class="font-bold text-lg mb-2">🔥 Rovers</h3>
+    <p>Jóvenes adultos enfocados en servicio y proyectos comunitarios.</p>
+  </div>
+
+</section>
+
+<!-- ACTIVIDADES -->
+<section class="bg-white py-10">
+  <div class="container mx-auto px-4">
+
+    <h2 class="text-2xl font-bold mb-6">🏕️ Actividades Scouts</h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <div class="border p-5 rounded hover:shadow">
+        <h3 class="font-bold mb-2">Campamentos</h3>
+        <p>Aprender a vivir en la naturaleza y trabajar en equipo.</p>
+      </div>
+
+      <div class="border p-5 rounded hover:shadow">
+        <h3 class="font-bold mb-2">Fogatas</h3>
+        <p>Momentos de unión, canciones y reflexión grupal.</p>
+      </div>
+
+      <div class="border p-5 rounded hover:shadow">
+        <h3 class="font-bold mb-2">Servicios</h3>
+        <p>Ayuda a la comunidad y proyectos solidarios.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- VALORES -->
+<section class="bg-green-800 text-white py-12 text-center">
+  <h2 class="text-2xl font-bold mb-4">🌿 Valores Scouts</h2>
+
+  <p class="max-w-2xl mx-auto text-green-100">
+    Lealtad, respeto, responsabilidad, servicio, amistad, disciplina y amor por la naturaleza.
+  </p>
+</section>
+
+<!-- CTA -->
+<section class="text-center py-12">
+  <h2 class="text-2xl font-bold mb-2">¿Querés ser Scout?</h2>
+  <p class="mb-4 text-gray-600">Sumate a un grupo cercano a tu ciudad</p>
+
+  <button class="bg-green-700 text-white px-6 py-3 rounded font-bold">
+    Encontrar grupo
+  </button>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-gray-900 text-gray-300 text-center py-6 text-sm">
+  © 2026 Movimiento Scout - Todos los derechos reservados
+</footer>
+
+<!-- PWA -->
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js");
+  }
+</script>
+
+</body>
+</html>
