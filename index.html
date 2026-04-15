@@ -38,8 +38,16 @@
     <button class="bg-white text-green-800 px-6 py-3 rounded font-bold">
       Unirme al movimiento
     </button>
+    
   </div>
 </section>
+
+<div id="update-banner"
+  class="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-6 py-3 rounded shadow-lg hidden">  Nueva versión disponible
+  <button id="update-button" class="bg-green-500 hover:bg-green-600 text-white border-none px-4 py-2 ml-4 rounded cursor-pointer text-sm">
+    Actualizar
+  </button>
+</div>
 
 <!-- STATS -->
 <section class="container mx-auto px-4 py-10 grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -147,7 +155,7 @@
     Encontrar grupo
   </button>
 
-  <button id="installBtn" style="display:none;">
+  <button id="installBtn" class="bg-green-700 text-white px-6 py-3 rounded font-bold" style="display:none;">
     Instalar App
   </button>
 </section>
@@ -161,8 +169,30 @@
 <!-- PWA -->
 <script>
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js");
-  }
+
+  navigator.serviceWorker.register("/sw.js").then(reg => {
+
+    reg.addEventListener("updatefound", () => {
+
+      const newWorker = reg.installing;
+
+      newWorker.addEventListener("statechange", () => {
+
+        if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+          document.getElementById("update-banner").classList.remove("hidden");
+        }
+
+      });
+
+    });
+
+  });
+
+}
+
+document.getElementById("update-button").addEventListener("click", () => {
+  window.location.reload();
+});
 </script>
 
 </body>

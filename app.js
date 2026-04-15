@@ -1,25 +1,33 @@
 let deferredPrompt;
 const installBtn = document.getElementById("installBtn");
 
-window.addEventListener("beforeinstallprompt", (e) => {
+if (installBtn) {
+
+  window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
+
     deferredPrompt = e;
 
-    installBtn.style.display = "block"; // Mostrar botón
-});
+    installBtn.classList.remove("hidden"); // mejor para Tailwind
+  });
 
-installBtn.addEventListener("click", async () => {
-    installBtn.style.display = "none";
+  installBtn.addEventListener("click", async () => {
+
+    if (!deferredPrompt) return;
+
+    installBtn.classList.add("hidden");
 
     deferredPrompt.prompt();
 
     const { outcome } = await deferredPrompt.userChoice;
 
     if (outcome === "accepted") {
-        console.log("Usuario instaló la app");
+      console.log("Usuario instaló la app");
     } else {
-        console.log("Usuario canceló la instalación");
+      console.log("Usuario canceló la instalación");
     }
 
     deferredPrompt = null;
-});
+  });
+
+}
