@@ -2,21 +2,28 @@ let deferredPrompt;
 const installBtn = document.getElementById("installBtn");
 
 if (installBtn) {
+  const showInstallButton = () => {
+    installBtn.style.display = "inline-block";
+    installBtn.classList.remove("hidden");
+  };
+
+  const hideInstallButton = () => {
+    installBtn.style.display = "none";
+    installBtn.classList.add("hidden");
+  };
+
+  hideInstallButton();
 
   window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
-
     deferredPrompt = e;
-
-    installBtn.classList.remove("hidden"); // mejor para Tailwind
+    showInstallButton();
   });
 
   installBtn.addEventListener("click", async () => {
-
     if (!deferredPrompt) return;
 
-    installBtn.classList.add("hidden");
-
+    hideInstallButton();
     deferredPrompt.prompt();
 
     const { outcome } = await deferredPrompt.userChoice;
@@ -30,4 +37,9 @@ if (installBtn) {
     deferredPrompt = null;
   });
 
+  window.addEventListener("appinstalled", () => {
+    console.log("La app fue instalada");
+    deferredPrompt = null;
+    hideInstallButton();
+  });
 }
