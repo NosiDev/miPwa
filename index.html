@@ -332,61 +332,43 @@ Enviar
 
 </footer>
 
-<!-- SERVICE WORKER -->
+<!-- Antes del </body> -->
+<div id="update-banner" class="hidden fixed bottom-4 right-4 bg-green-700 text-white px-4 py-3 rounded-xl shadow-lg z-50 flex gap-3 items-center">
+  <span>Nueva versión disponible</span>
+  <button id="updateBtn" class="bg-white text-green-800 px-3 py-1 rounded font-bold text-sm">
+    Actualizar
+  </button>
+</div>
+
 <script>
 if ("serviceWorker" in navigator) {
-
   navigator.serviceWorker.register("/sw.js").then((reg) => {
-
-    // detecta nueva versión
     reg.addEventListener("updatefound", () => {
-
       const newWorker = reg.installing;
-
       newWorker.addEventListener("statechange", () => {
-
         if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
           document.getElementById("update-banner").classList.remove("hidden");
         }
-
       });
-
     });
-    navigator.serviceWorker.addEventListener("message", (event) => {
-      if (event.data === "RELOAD") {
-        window.location.reload();
-      }
-    });
-    // pedir update manual cada cierto tiempo
-    setInterval(() => {
-      reg.update();
-    }, 60000);
 
+    navigator.serviceWorker.addEventListener("message", (e) => {
+      if (e.data === "RELOAD") window.location.reload();
+    });
+
+    setInterval(() => reg.update(), 60000);
   });
 
-  // cuando el SW nuevo toma control
   navigator.serviceWorker.addEventListener("controllerchange", () => {
     window.location.reload();
   });
-
 }
 
-// =========================
-// BOTÓN ACTUALIZAR
-// =========================
-
-updateBtn.addEventListener("click", async () => {
-
+document.getElementById("updateBtn")?.addEventListener("click", async () => {
   const reg = await navigator.serviceWorker.getRegistration();
-
-  if (reg && reg.waiting) {
-    reg.waiting.postMessage("SKIP_WAITING");
-  }
-
+  if (reg?.waiting) reg.waiting.postMessage("SKIP_WAITING");
 });
-
 </script>
-
 </body>
 
 </html>
