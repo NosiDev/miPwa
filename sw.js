@@ -39,6 +39,8 @@ self.addEventListener("activate", (event) => {
 
 });
 
+// FETCH - Stale While Revalidate
+
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
