@@ -1,50 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Movimiento Scout</title>
 
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 <link rel="manifest" href="manifest.json">
+
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
 <meta name="theme-color" content="#166534">
+
+<style>
+html{
+scroll-behavior:smooth;
+}
+</style>
 
 </head>
 
 <body class="bg-gray-50 text-gray-800 font-sans">
 
 <!-- NAV -->
+
 <header class="bg-white shadow-md sticky top-0 z-50">
+
 <div class="container mx-auto px-6 py-4 flex justify-between items-center">
 
-<h1 class="text-xl font-bold text-green-700 flex items-center gap-2">
+<h1 class="text-xl font-bold text-green-700">
 🏕️ Movimiento Scout
 </h1>
 
 <nav class="space-x-6 text-sm font-semibold hidden md:block text-gray-600">
-<a class="hover:text-green-700 cursor-pointer">Inicio</a>
-<a class="hover:text-green-700 cursor-pointer">Historia</a>
-<a class="hover:text-green-700 cursor-pointer">Ramas</a>
-<a class="hover:text-green-700 cursor-pointer">Actividades</a>
-<a class="hover:text-green-700 cursor-pointer">Contacto</a>
+
+<a href="#inicio" class="hover:text-green-700">Inicio</a>
+<a href="#historia" class="hover:text-green-700">Historia</a>
+<a href="#ramas" class="hover:text-green-700">Ramas</a>
+<a href="#actividades" class="hover:text-green-700">Actividades</a>
+<a href="#contacto" class="hover:text-green-700">Contacto</a>
+
 </nav>
 
 </div>
+
 </header>
 
 <!-- HERO -->
-<section class="relative overflow-hidden">
+
+<section id="inicio" class="relative overflow-hidden">
 
 <div class="absolute inset-0 bg-gradient-to-br from-green-900 via-green-700 to-green-500 opacity-95"></div>
 
 <div class="relative container mx-auto px-6 py-28 text-center text-white">
 
-<h2 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
+<h2 class="text-5xl md:text-6xl font-extrabold mb-6">
 El movimiento que forma líderes
 </h2>
 
 <p class="max-w-2xl mx-auto text-green-100 text-lg mb-8">
-Aprendé valores, liderazgo y trabajo en equipo mientras vivís aventuras en la naturaleza junto a miles de jóvenes en todo el mundo.
+Aprendé liderazgo, trabajo en equipo y amor por la naturaleza.
 </p>
 
 <div class="flex justify-center gap-4 flex-wrap">
@@ -53,7 +69,7 @@ Aprendé valores, liderazgo y trabajo en equipo mientras vivís aventuras en la 
 Unirme al movimiento
 </button>
 
-<button id="installBtn" class="bg-green-900 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:scale-105 transition" style="display:none;">
+<button id="installBtn" class="bg-green-900 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:scale-105 transition hidden">
 Instalar App
 </button>
 
@@ -63,80 +79,110 @@ Instalar App
 
 </section>
 
-<!-- UPDATE BANNER -->
-<div id="update-banner"
-class="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hidden">
-
-Nueva versión disponible
-
-<button id="update-button"
-class="bg-green-500 hover:bg-green-600 text-white border-none px-4 py-2 ml-4 rounded cursor-pointer text-sm">
-Actualizar
-</button>
-
-</div>
-
 <!-- STATS -->
+
 <section class="container mx-auto px-6 py-16">
+
 <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
 
 <div class="bg-white p-8 rounded-2xl shadow">
 <p class="text-gray-500 text-sm">Scouts en el mundo</p>
-<h3 class="text-3xl font-bold text-green-700 mt-2">57M+</h3>
+<h3 class="text-3xl font-bold text-green-700">57M+</h3>
 </div>
 
 <div class="bg-white p-8 rounded-2xl shadow">
 <p class="text-gray-500 text-sm">Países</p>
-<h3 class="text-3xl font-bold text-green-700 mt-2">170+</h3>
+<h3 class="text-3xl font-bold text-green-700">170+</h3>
 </div>
 
 <div class="bg-white p-8 rounded-2xl shadow">
-<p class="text-gray-500 text-sm">Años de historia</p>
-<h3 class="text-3xl font-bold text-green-700 mt-2">115+</h3>
+<p class="text-gray-500 text-sm">Años</p>
+<h3 class="text-3xl font-bold text-green-700">115+</h3>
 </div>
 
 <div class="bg-white p-8 rounded-2xl shadow">
 <p class="text-gray-500 text-sm">Valores</p>
-<h3 class="text-3xl font-bold text-green-700 mt-2">10</h3>
+<h3 class="text-3xl font-bold text-green-700">10</h3>
 </div>
 
 </div>
+
 </section>
 
 <!-- HISTORIA -->
-<section class="bg-white py-16">
+
+<section id="historia" class="bg-white py-16">
+
 <div class="container mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
 
 <div>
+
 <h2 class="text-3xl font-bold mb-6 text-green-800">
 Historia del Movimiento Scout
 </h2>
 
 <p class="text-gray-600 mb-4">
-El Movimiento Scout nació en 1907 gracias a Robert Baden-Powell en Inglaterra.
+
+El Movimiento Scout fue fundado en 1907 por Robert Baden-Powell en Inglaterra.
+
 </p>
 
 <p class="text-gray-600">
-Actualmente millones de jóvenes participan en actividades que fomentan liderazgo y servicio.
+
+Su objetivo era educar jóvenes mediante la aventura, el aprendizaje práctico y el servicio.
+
 </p>
+
 </div>
 
 <div class="bg-green-700 text-white rounded-2xl p-10 shadow-xl">
+
 <h3 class="text-2xl font-bold mb-4">
 Una comunidad global
 </h3>
 
 <p class="text-green-100">
-El movimiento scout está presente en casi todos los países del mundo.
+El escultismo está presente en casi todos los países del mundo.
 </p>
 
 </div>
 
 </div>
+
+</section>
+
+<!-- LEY SCOUT -->
+
+<section class="bg-green-50 py-16">
+
+<div class="container mx-auto px-6 max-w-3xl">
+
+<h2 class="text-3xl font-bold text-center mb-10 text-green-800">
+Ley Scout
+</h2>
+
+<ul class="space-y-2 text-gray-700">
+
+<li>1. El scout es digno de confianza.</li>
+<li>2. El scout es leal.</li>
+<li>3. El scout ayuda al prójimo.</li>
+<li>4. El scout es amigo de todos.</li>
+<li>5. El scout es respetuoso.</li>
+<li>6. El scout ama la naturaleza.</li>
+<li>7. El scout es responsable.</li>
+<li>8. El scout es optimista.</li>
+<li>9. El scout es trabajador.</li>
+<li>10. El scout es limpio.</li>
+
+</ul>
+
+</div>
+
 </section>
 
 <!-- RAMAS -->
-<section class="container mx-auto px-6 py-16">
+
+<section id="ramas" class="container mx-auto px-6 py-16">
 
 <h2 class="text-3xl font-bold text-center mb-12 text-green-800">
 Ramas del Movimiento
@@ -165,10 +211,13 @@ Ramas del Movimiento
 </div>
 
 </div>
+
 </section>
 
 <!-- ACTIVIDADES -->
-<section class="bg-green-50 py-16">
+
+<section id="actividades" class="bg-green-50 py-16">
+
 <div class="container mx-auto px-6">
 
 <h2 class="text-3xl font-bold text-center mb-12 text-green-800">
@@ -179,12 +228,12 @@ Actividades Scouts
 
 <div class="bg-white p-8 rounded-2xl shadow">
 <h3 class="font-bold mb-2">🏕️ Campamentos</h3>
-<p class="text-gray-600">Aprender a vivir en la naturaleza.</p>
+<p class="text-gray-600">Vida en la naturaleza.</p>
 </div>
 
 <div class="bg-white p-8 rounded-2xl shadow">
 <h3 class="font-bold mb-2">🔥 Fogatas</h3>
-<p class="text-gray-600">Canciones e historias.</p>
+<p class="text-gray-600">Canciones y tradiciones.</p>
 </div>
 
 <div class="bg-white p-8 rounded-2xl shadow">
@@ -195,9 +244,11 @@ Actividades Scouts
 </div>
 
 </div>
+
 </section>
 
 <!-- GALERIA -->
+
 <section class="container mx-auto px-6 py-16">
 
 <h2 class="text-3xl font-bold text-center mb-12 text-green-800">
@@ -206,46 +257,47 @@ Galería Scout
 
 <div class="grid md:grid-cols-3 gap-6">
 
-<img class="rounded-xl shadow" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
-<img class="rounded-xl shadow" src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429">
-<img class="rounded-xl shadow" src="https://images.unsplash.com/photo-1520975922284-6f6f4b2a79ef">
+<img loading="lazy" class="rounded-xl shadow" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+<img loading="lazy" class="rounded-xl shadow" src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429">
+<img loading="lazy" class="rounded-xl shadow" src="https://images.unsplash.com/photo-1520975922284-6f6f4b2a79ef">
 
 </div>
 
 </section>
 
-<!-- TESTIMONIOS -->
+<!-- EVENTOS -->
+
 <section class="bg-green-50 py-16">
+
 <div class="container mx-auto px-6">
 
 <h2 class="text-3xl font-bold text-center mb-12 text-green-800">
-Experiencias Scouts
+Próximos Eventos
 </h2>
 
-<div class="grid md:grid-cols-3 gap-8">
+<div class="grid md:grid-cols-3 gap-6">
 
 <div class="bg-white p-6 rounded-xl shadow">
-<p>"Ser scout me enseñó liderazgo."</p>
-<p class="font-bold mt-4">Lucas</p>
-</div>
-
-<div class="bg-white p-6 rounded-xl shadow">
-<p>"Los campamentos son increíbles."</p>
-<p class="font-bold mt-4">Martina</p>
+Campamento regional
 </div>
 
 <div class="bg-white p-6 rounded-xl shadow">
-<p>"Valores para toda la vida."</p>
-<p class="font-bold mt-4">Tomás</p>
+Encuentro scout
+</div>
+
+<div class="bg-white p-6 rounded-xl shadow">
+Servicio comunitario
 </div>
 
 </div>
 
 </div>
+
 </section>
 
 <!-- CONTACTO -->
-<section class="bg-white py-16">
+
+<section id="contacto" class="bg-white py-16">
 
 <div class="container mx-auto px-6 max-w-xl">
 
@@ -256,6 +308,7 @@ Contacto
 <form class="space-y-4">
 
 <input class="w-full border p-3 rounded" placeholder="Nombre">
+
 <input class="w-full border p-3 rounded" placeholder="Email">
 
 <textarea class="w-full border p-3 rounded" rows="4" placeholder="Mensaje"></textarea>
@@ -270,68 +323,65 @@ Enviar
 
 </section>
 
-<!-- CTA -->
-<section class="py-20 text-center">
-
-<h2 class="text-3xl font-bold mb-4">
-¿Querés ser Scout?
-</h2>
-
-<button class="bg-green-700 text-white px-8 py-4 rounded-xl font-bold">
-Encontrar grupo
-</button>
-
-</section>
-
 <!-- FOOTER -->
+
 <footer class="bg-gray-900 text-gray-400 text-center py-8 text-sm">
+
 © 2026 Movimiento Scout
+
 </footer>
 
-<script src="app.js"></script>
-
-<!-- PWA -->
+<!-- SERVICE WORKER -->
 <script>
-
 if ("serviceWorker" in navigator) {
 
-navigator.serviceWorker.register("/sw.js").then((reg) => {
+  navigator.serviceWorker.register("/sw.js").then((reg) => {
 
-reg.addEventListener("updatefound", () => {
+    // detecta nueva versión
+    reg.addEventListener("updatefound", () => {
 
-const newWorker = reg.installing;
+      const newWorker = reg.installing;
 
-newWorker.addEventListener("statechange", () => {
+      newWorker.addEventListener("statechange", () => {
 
-if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+        if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+          document.getElementById("update-banner").classList.remove("hidden");
+        }
 
-document.getElementById("update-banner").classList.remove("hidden");
+      });
+
+    });
+
+    // pedir update manual cada cierto tiempo
+    setInterval(() => {
+      reg.update();
+    }, 60000);
+
+  });
+
+  // cuando el SW nuevo toma control
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    window.location.reload();
+  });
 
 }
 
-});
+// =========================
+// BOTÓN ACTUALIZAR
+// =========================
 
-});
+updateBtn.addEventListener("click", async () => {
 
-});
+  const reg = await navigator.serviceWorker.getRegistration();
 
-}
+  if (reg && reg.waiting) {
+    reg.waiting.postMessage("SKIP_WAITING");
+  }
 
-document.getElementById("update-button").addEventListener("click", async () => {
-
-const reg = await navigator.serviceWorker.getRegistration();
-
-if (reg && reg.waiting) {
-reg.waiting.postMessage("SKIP_WAITING");
-}
-
-});
-
-navigator.serviceWorker.addEventListener("controllerchange", () => {
-window.location.reload();
 });
 
 </script>
 
 </body>
+
 </html>
