@@ -1,4 +1,4 @@
-const CACHE_NAME = "my-pwa-v2";
+const CACHE_NAME = "scout-pwa-v1";
 
 const urlsToCache = [
   "./",
@@ -9,7 +9,7 @@ const urlsToCache = [
 
 // INSTALL
 self.addEventListener("install", (event) => {
-  console.log("[SW] Instalando...");
+  console.log("[SW] Instalando");
 
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -17,12 +17,12 @@ self.addEventListener("install", (event) => {
     })
   );
 
-  self.skipWaiting();
+  self.skipWaiting(); // activa el nuevo SW inmediatamente
 });
 
 // ACTIVATE
 self.addEventListener("activate", (event) => {
-  console.log("[SW] Activando...");
+  console.log("[SW] Activando");
 
   event.waitUntil(
     caches.keys().then((keys) => {
@@ -37,10 +37,17 @@ self.addEventListener("activate", (event) => {
     })
   );
 
-  self.clients.claim();
+  self.clients.claim(); // toma control de la app abierta
 });
 
-// FETCH → Network First
+// RECIBIR MENSAJE PARA ACTUALIZAR
+self.addEventListener("message", (event) => {
+  if (event.data === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
+});
+
+// FETCH (Network first)
 self.addEventListener("fetch", (event) => {
 
   if (event.request.method !== "GET") return;
@@ -51,9 +58,11 @@ self.addEventListener("fetch", (event) => {
 
         const clone = response.clone();
 
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, clone);
-        });
+        if (event.request.url.startsWith(self.location.origin)) {
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, clone);
+          });
+        }
 
         return response;
 

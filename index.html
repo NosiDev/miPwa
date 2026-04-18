@@ -175,7 +175,7 @@
 <script>
   if ("serviceWorker" in navigator) {
 
-  navigator.serviceWorker.register("/sw.js").then(reg => {
+  navigator.serviceWorker.register("/sw.js").then((reg) => {
 
     reg.addEventListener("updatefound", () => {
 
@@ -184,7 +184,9 @@
       newWorker.addEventListener("statechange", () => {
 
         if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+
           document.getElementById("update-banner").classList.remove("hidden");
+
         }
 
       });
@@ -195,7 +197,19 @@
 
 }
 
-document.getElementById("update-button").addEventListener("click", () => {
+// botón actualizar
+document.getElementById("update-button").addEventListener("click", async () => {
+
+  const reg = await navigator.serviceWorker.getRegistration();
+
+  if (reg && reg.waiting) {
+    reg.waiting.postMessage("SKIP_WAITING");
+  }
+
+});
+
+// cuando el nuevo SW toma control
+navigator.serviceWorker.addEventListener("controllerchange", () => {
   window.location.reload();
 });
 </script>
