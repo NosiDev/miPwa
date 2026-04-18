@@ -2,7 +2,12 @@ let deferredPrompt;
 const installBtn = document.getElementById("installBtn");
 
 if (installBtn) {
+  const isStandalone =
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone === true;
+
   const showInstallButton = () => {
+    if (isStandalone) return;
     installBtn.style.display = "inline-block";
     installBtn.classList.remove("hidden");
   };
@@ -14,11 +19,15 @@ if (installBtn) {
 
   hideInstallButton();
 
-  window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    showInstallButton();
-  });
+  if (isStandalone) {
+    console.log("La app ya está abierta como aplicación instalada");
+  } else {
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      showInstallButton();
+    });
+  }
 
   installBtn.addEventListener("click", async () => {
     if (!deferredPrompt) return;
