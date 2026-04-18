@@ -1,15 +1,13 @@
-const CACHE_NAME = "scout-pwa-v8";
+const CACHE_NAME = "scout-pwa-v9";
 
 const urlsToCache = [
   "/",
   "/index.html",
-  "/manifest.json",
-  "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+  "/manifest.json"
 ];
 
 // INSTALL
 self.addEventListener("install", (event) => {
-
   self.skipWaiting();
 
   event.waitUntil(
@@ -17,19 +15,15 @@ self.addEventListener("install", (event) => {
       return cache.addAll(urlsToCache);
     })
   );
-
 });
 
-// ACTIVATE
+// ACTIVATE (limpieza total + takeover real)
 self.addEventListener("activate", (event) => {
-
   event.waitUntil(
     caches.keys().then((keys) => {
       return Promise.all(
         keys.map((key) => {
-          if (key !== CACHE_NAME) {
-            return caches.delete(key);
-          }
+          if (key !== CACHE_NAME) return caches.delete(key);
         })
       );
     })
@@ -37,23 +31,26 @@ self.addEventListener("activate", (event) => {
 
   self.clients.claim();
 
+  // 🔥 fuerza reload de todos los tabs abiertos
+  self.clients.matchAll().then((clients) => {
+    clients.forEach((client) => client.postMessage("RELOAD"));
+  });
 });
 
-// FETCH - Stale While Revalidate
-
+// FETCH (cache first + fallback)
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
   event.respondWith(
     caches.match(event.request).then((cached) => {
-      const fetchPromise = fetch(event.request).then((networkResponse) => {
-        if (event.request.url.startsWith(self.location.origin)) {
-          caches.open(CACHE_NAME).then((cache) => {
+      const fetchPromise = fetch(event.request)
+        .then((networkResponse) => {
+          return caches.open(CACHE_NAME).then((cache) => {
             cache.put(event.request, networkResponse.clone());
+            return networkResponse;
           });
-        }
-        return networkResponse;
-      });
+        })
+        .catch(() => cached);
 
       return cached || fetchPromise;
     })
