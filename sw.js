@@ -1,4 +1,4 @@
-const CACHE_NAME = "scout-pwa-v1";
+const CACHE_NAME = "scout-pwa-v2";
 
 const urlsToCache = [
   "./",
@@ -9,7 +9,6 @@ const urlsToCache = [
 
 // INSTALL
 self.addEventListener("install", (event) => {
-  console.log("[SW] Instalando");
 
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -17,19 +16,16 @@ self.addEventListener("install", (event) => {
     })
   );
 
-  self.skipWaiting(); // activa el nuevo SW inmediatamente
 });
 
 // ACTIVATE
 self.addEventListener("activate", (event) => {
-  console.log("[SW] Activando");
 
   event.waitUntil(
     caches.keys().then((keys) => {
       return Promise.all(
         keys.map((key) => {
           if (key !== CACHE_NAME) {
-            console.log("[SW] Borrando cache viejo:", key);
             return caches.delete(key);
           }
         })
@@ -37,17 +33,17 @@ self.addEventListener("activate", (event) => {
     })
   );
 
-  self.clients.claim(); // toma control de la app abierta
+  self.clients.claim();
 });
 
-// RECIBIR MENSAJE PARA ACTUALIZAR
+// MENSAJE UPDATE
 self.addEventListener("message", (event) => {
   if (event.data === "SKIP_WAITING") {
     self.skipWaiting();
   }
 });
 
-// FETCH (Network first)
+// FETCH
 self.addEventListener("fetch", (event) => {
 
   if (event.request.method !== "GET") return;
