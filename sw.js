@@ -1,4 +1,4 @@
-const CACHE_NAME = "scout-pwa-v3";
+const CACHE_NAME = "scout-pwa-v5";
 
 const urlsToCache = [
   "/",
