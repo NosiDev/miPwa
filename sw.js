@@ -39,35 +39,21 @@ self.addEventListener("activate", (event) => {
 
 });
 
-// FETCH (Network first)
 self.addEventListener("fetch", (event) => {
-
   if (event.request.method !== "GET") return;
 
   event.respondWith(
-
-    fetch(event.request)
-      .then((response) => {
-
-        const clone = response.clone();
-
+    caches.match(event.request).then((cached) => {
+      const fetchPromise = fetch(event.request).then((networkResponse) => {
         if (event.request.url.startsWith(self.location.origin)) {
           caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, clone);
+            cache.put(event.request, networkResponse.clone());
           });
         }
+        return networkResponse;
+      });
 
-        return response;
-
-      })
-      .catch(() => {
-
-        return caches.match(event.request).then((response) => {
-          return response || caches.match("/index.html");
-        });
-
-      })
-
+      return cached || fetchPromise;
+    })
   );
-
 });
