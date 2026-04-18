@@ -1,14 +1,9 @@
 const CACHE_NAME = "scout-pwa-v9";
 
-const STATIC_ASSETS = [
-  "/manifest.json"
-  // NO incluyas "/" ni "/index.html" acá
-];
-
 self.addEventListener("install", (event) => {
-  self.skipWaiting();
+  // NO hay skipWaiting acá — lo hacemos después
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS))
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(["/manifest.json"]))
   );
 });
 
@@ -16,9 +11,8 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
       Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
-    )
+    ).then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
 self.addEventListener("fetch", (event) => {
@@ -26,29 +20,29 @@ self.addEventListener("fetch", (event) => {
 
   const url = new URL(event.request.url);
 
-  // 🔑 HTML → network-first (siempre intenta traer el nuevo)
   if (url.pathname === "/" || url.pathname.endsWith(".html")) {
     event.respondWith(
       fetch(event.request)
         .then((res) => {
-          const clone = res.clone();
-          caches.open(CACHE_NAME).then((c) => c.put(event.request, clone));
+          caches.open(CACHE_NAME).then((c) => c.put(event.request, res.clone()));
           return res;
         })
-        .catch(() => caches.match(event.request)) // offline fallback
+        .catch(() => caches.match(event.request))
     );
     return;
   }
 
-  // Assets → cache-first (imágenes, fonts, etc.)
   event.respondWith(
     caches.match(event.request).then(
-      (cached) =>
-        cached ||
-        fetch(event.request).then((res) => {
-          caches.open(CACHE_NAME).then((c) => c.put(event.request, res.clone()));
-          return res;
-        })
+      (cached) => cached || fetch(event.request).then((res) => {
+        caches.open(CACHE_NAME).then((c) => c.put(event.request, res.clone()));
+        return res;
+      })
     )
   );
+});
+
+// 👇 Escucha el mensaje desde el index.html
+self.addEventListener("message", (event) => {
+  if (event.data === "SKIP_WAITING") self.skipWaiting();
 });

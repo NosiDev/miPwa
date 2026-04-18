@@ -343,31 +343,26 @@ Enviar
 <script>
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/sw.js").then((reg) => {
+
     reg.addEventListener("updatefound", () => {
       const newWorker = reg.installing;
+
       newWorker.addEventListener("statechange", () => {
-        if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
-          document.getElementById("update-banner").classList.remove("hidden");
+        if (newWorker.state === "installed") {
+          // ✅ Apenas está listo, activalo solo — sin preguntarle al usuario
+          newWorker.postMessage("SKIP_WAITING");
         }
       });
     });
 
-    navigator.serviceWorker.addEventListener("message", (e) => {
-      if (e.data === "RELOAD") window.location.reload();
-    });
-
-    setInterval(() => reg.update(), 60000);
+    setInterval(() => reg.update(), 30000); // chequea cada 30s
   });
 
+  // Cuando el nuevo SW toma control → recarga la página sola
   navigator.serviceWorker.addEventListener("controllerchange", () => {
     window.location.reload();
   });
 }
-
-document.getElementById("updateBtn")?.addEventListener("click", async () => {
-  const reg = await navigator.serviceWorker.getRegistration();
-  if (reg?.waiting) reg.waiting.postMessage("SKIP_WAITING");
-});
 </script>
 </body>
 
