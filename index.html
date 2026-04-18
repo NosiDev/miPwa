@@ -1,172 +1,261 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Movimiento Scout</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movimiento Scout</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#166534">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#166534">
+
 </head>
 
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-50 text-gray-800 font-sans">
 
 <!-- NAV -->
-<header class="bg-green-800 text-white shadow">
-  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold">🏕️ Movimiento Scout</h1>
+<header class="bg-white shadow-md sticky top-0 z-50">
+<div class="container mx-auto px-6 py-4 flex justify-between items-center">
 
-    <nav class="space-x-4 text-sm hidden md:block">
-      <a class="hover:underline">Inicio</a>
-      <a class="hover:underline">Historia</a>
-      <a class="hover:underline">Ramas</a>
-      <a class="hover:underline">Actividades</a>
-      <a class="hover:underline">Contacto</a>
-    </nav>
-  </div>
+<h1 class="text-xl font-bold text-green-700 flex items-center gap-2">
+🏕️ Movimiento Scout
+</h1>
+
+<nav class="space-x-6 text-sm font-semibold hidden md:block text-gray-600">
+<a class="hover:text-green-700 cursor-pointer">Inicio</a>
+<a class="hover:text-green-700 cursor-pointer">Historia</a>
+<a class="hover:text-green-700 cursor-pointer">Ramas</a>
+<a class="hover:text-green-700 cursor-pointer">Actividades</a>
+<a class="hover:text-green-700 cursor-pointer">Contacto</a>
+</nav>
+
+</div>
 </header>
 
 <!-- HERO -->
-<section class="bg-gradient-to-r from-green-900 to-green-600 text-white">
-  <div class="container mx-auto px-4 py-16 text-center">
-    <h2 class="text-4xl font-bold mb-3">Ser Scout es un estilo de vida</h2>
-    <p class="text-green-100 mb-6 max-w-2xl mx-auto">
-      El Movimiento Scout educa en valores, liderazgo, trabajo en equipo y respeto por la naturaleza.
-    </p>
+<section class="relative overflow-hidden">
 
-    <button class="bg-white text-green-800 px-6 py-3 rounded font-bold">
-      Unirme al movimiento
-    </button>
-    
-  </div>
+<div class="absolute inset-0 bg-gradient-to-br from-green-900 via-green-700 to-green-500 opacity-95"></div>
+
+<div class="relative container mx-auto px-6 py-28 text-center text-white">
+
+<h2 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
+El movimiento que forma líderes
+</h2>
+
+<p class="max-w-2xl mx-auto text-green-100 text-lg mb-8">
+Aprendé valores, liderazgo y trabajo en equipo mientras vivís aventuras en la naturaleza junto a miles de jóvenes en todo el mundo.
+</p>
+
+<div class="flex justify-center gap-4 flex-wrap">
+
+<button class="bg-white text-green-800 px-8 py-4 rounded-xl font-bold shadow-lg hover:scale-105 transition">
+Unirme al movimiento
+</button>
+
+<button id="installBtn" class="bg-green-900 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:scale-105 transition" style="display:none;">
+Instalar App
+</button>
+
+</div>
+
+</div>
+
 </section>
 
+<!-- UPDATE BANNER -->
 <div id="update-banner"
-  class="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-6 py-3 rounded shadow-lg hidden">  Nueva versión disponible
-  <button id="update-button" class="bg-green-500 hover:bg-green-600 text-white border-none px-4 py-2 ml-4 rounded cursor-pointer text-sm">
-    Actualizar
-  </button>
+class="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hidden">
+
+Nueva versión disponible
+
+<button id="update-button"
+class="bg-green-500 hover:bg-green-600 text-white border-none px-4 py-2 ml-4 rounded cursor-pointer text-sm">
+Actualizar
+</button>
+
 </div>
 
 <!-- STATS -->
-<section class="container mx-auto px-4 py-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+<section class="container mx-auto px-6 py-16">
 
-  <div class="bg-white p-5 rounded shadow text-center">
-    <p class="text-gray-500 text-sm">Scouts en el mundo</p>
-    <h3 class="text-2xl font-bold">57M+</h3>
-  </div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
 
-  <div class="bg-white p-5 rounded shadow text-center">
-    <p class="text-gray-500 text-sm">Países</p>
-    <h3 class="text-2xl font-bold">170+</h3>
-  </div>
+<div class="bg-white p-8 rounded-2xl shadow hover:shadow-lg transition">
+<p class="text-gray-500 text-sm">Scouts en el mundo</p>
+<h3 class="text-3xl font-bold text-green-700 mt-2">57M+</h3>
+</div>
 
-  <div class="bg-white p-5 rounded shadow text-center">
-    <p class="text-gray-500 text-sm">Años de historia</p>
-    <h3 class="text-2xl font-bold">+115</h3>
-  </div>
+<div class="bg-white p-8 rounded-2xl shadow hover:shadow-lg transition">
+<p class="text-gray-500 text-sm">Países</p>
+<h3 class="text-3xl font-bold text-green-700 mt-2">170+</h3>
+</div>
 
-  <div class="bg-white p-5 rounded shadow text-center">
-    <p class="text-gray-500 text-sm">Valores base</p>
-    <h3 class="text-2xl font-bold">10</h3>
-  </div>
+<div class="bg-white p-8 rounded-2xl shadow hover:shadow-lg transition">
+<p class="text-gray-500 text-sm">Años de historia</p>
+<h3 class="text-3xl font-bold text-green-700 mt-2">115+</h3>
+</div>
+
+<div class="bg-white p-8 rounded-2xl shadow hover:shadow-lg transition">
+<p class="text-gray-500 text-sm">Valores</p>
+<h3 class="text-3xl font-bold text-green-700 mt-2">10</h3>
+</div>
+
+</div>
 
 </section>
 
 <!-- HISTORIA -->
-<section class="container mx-auto px-4 py-10 bg-white rounded shadow">
+<section class="bg-white py-16">
 
-  <h2 class="text-2xl font-bold mb-4">📜 Historia del Movimiento Scout</h2>
+<div class="container mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
 
-  <p class="mb-4 text-gray-700">
-    El Movimiento Scout fue fundado en 1907 por Robert Baden-Powell en Inglaterra. Su objetivo era educar a los jóvenes a través de la aventura, la naturaleza y el servicio comunitario.
-  </p>
+<div>
+<h2 class="text-3xl font-bold mb-6 text-green-800">
+Historia del Movimiento Scout
+</h2>
 
-  <p class="text-gray-700">
-    Hoy en día, el movimiento está presente en casi todos los países del mundo y sigue promoviendo valores como la solidaridad, el respeto y el liderazgo juvenil.
-  </p>
+<p class="text-gray-600 mb-4 leading-relaxed">
+El Movimiento Scout nació en 1907 gracias a Robert Baden-Powell en Inglaterra. Su objetivo fue educar jóvenes a través de la aventura, el aprendizaje práctico y el trabajo en equipo.
+</p>
+
+<p class="text-gray-600 leading-relaxed">
+Actualmente millones de jóvenes participan en actividades que fomentan el liderazgo, el respeto por la naturaleza y el servicio a la comunidad.
+</p>
+</div>
+
+<div class="bg-green-700 text-white rounded-2xl p-10 shadow-xl">
+
+<h3 class="text-2xl font-bold mb-4">
+Una comunidad global
+</h3>
+
+<p class="text-green-100">
+El movimiento scout está presente en casi todos los países del mundo y continúa formando generaciones de jóvenes comprometidos con la sociedad.
+</p>
+
+</div>
+
+</div>
 
 </section>
 
 <!-- RAMAS -->
-<section class="container mx-auto px-4 py-10 grid md:grid-cols-3 gap-6">
+<section class="container mx-auto px-6 py-16">
 
-  <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
-    <h3 class="font-bold text-lg mb-2">🐺 Lobatos</h3>
-    <p>Niños de 7 a 11 años que aprenden jugando en manada.</p>
-  </div>
+<h2 class="text-3xl font-bold text-center mb-12 text-green-800">
+Ramas del Movimiento
+</h2>
 
-  <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
-    <h3 class="font-bold text-lg mb-2">⚜️ Scouts</h3>
-    <p>Adolescentes que desarrollan liderazgo y habilidades prácticas.</p>
-  </div>
+<div class="grid md:grid-cols-4 gap-6">
 
-  <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
-    <h3 class="font-bold text-lg mb-2">🌟 Caminantes</h3>
-    <p>Adolescentes que se enfocan en el desarrollo personal y el servicio.</p>
-  </div>
+<div class="bg-white p-6 rounded-2xl shadow hover:shadow-xl transition text-center">
+<div class="text-4xl mb-3">🐺</div>
+<h3 class="font-bold text-lg">Lobatos</h3>
+<p class="text-gray-500 text-sm mt-2">
+Niños que aprenden jugando en equipo.
+</p>
+</div>
 
-  <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
-    <h3 class="font-bold text-lg mb-2">🔥 Rovers</h3>
-    <p>Jóvenes adultos enfocados en servicio y proyectos comunitarios.</p>
-  </div>
+<div class="bg-white p-6 rounded-2xl shadow hover:shadow-xl transition text-center">
+<div class="text-4xl mb-3">⚜️</div>
+<h3 class="font-bold text-lg">Scouts</h3>
+<p class="text-gray-500 text-sm mt-2">
+Aprenden habilidades prácticas y liderazgo.
+</p>
+</div>
+
+<div class="bg-white p-6 rounded-2xl shadow hover:shadow-xl transition text-center">
+<div class="text-4xl mb-3">🌟</div>
+<h3 class="font-bold text-lg">Caminantes</h3>
+<p class="text-gray-500 text-sm mt-2">
+Desarrollo personal y compromiso social.
+</p>
+</div>
+
+<div class="bg-white p-6 rounded-2xl shadow hover:shadow-xl transition text-center">
+<div class="text-4xl mb-3">🔥</div>
+<h3 class="font-bold text-lg">Rovers</h3>
+<p class="text-gray-500 text-sm mt-2">
+Servicio comunitario y liderazgo juvenil.
+</p>
+</div>
+
+</div>
 
 </section>
 
 <!-- ACTIVIDADES -->
-<section class="bg-white py-10">
-  <div class="container mx-auto px-4">
+<section class="bg-green-50 py-16">
 
-    <h2 class="text-2xl font-bold mb-6">🏕️ Actividades Scouts</h2>
+<div class="container mx-auto px-6">
 
-    <div class="grid md:grid-cols-3 gap-6">
+<h2 class="text-3xl font-bold text-center mb-12 text-green-800">
+Actividades Scouts
+</h2>
 
-      <div class="border p-5 rounded hover:shadow">
-        <h3 class="font-bold mb-2">Campamentos</h3>
-        <p>Aprender a vivir en la naturaleza y trabajar en equipo.</p>
-      </div>
+<div class="grid md:grid-cols-3 gap-8">
 
-      <div class="border p-5 rounded hover:shadow">
-        <h3 class="font-bold mb-2">Fogatas</h3>
-        <p>Momentos de unión, canciones y reflexión grupal.</p>
-      </div>
+<div class="bg-white p-8 rounded-2xl shadow hover:shadow-xl transition">
+<h3 class="font-bold text-lg mb-2">🏕️ Campamentos</h3>
+<p class="text-gray-600">
+Experiencias en la naturaleza donde se desarrollan habilidades y trabajo en equipo.
+</p>
+</div>
 
-      <div class="border p-5 rounded hover:shadow">
-        <h3 class="font-bold mb-2">Servicios</h3>
-        <p>Ayuda a la comunidad y proyectos solidarios.</p>
-      </div>
+<div class="bg-white p-8 rounded-2xl shadow hover:shadow-xl transition">
+<h3 class="font-bold text-lg mb-2">🔥 Fogatas</h3>
+<p class="text-gray-600">
+Momentos de unión con canciones, historias y reflexión grupal.
+</p>
+</div>
 
-    </div>
+<div class="bg-white p-8 rounded-2xl shadow hover:shadow-xl transition">
+<h3 class="font-bold text-lg mb-2">🤝 Servicios</h3>
+<p class="text-gray-600">
+Acciones solidarias que ayudan a mejorar la comunidad.
+</p>
+</div>
 
-  </div>
+</div>
+
+</div>
+
 </section>
 
 <!-- VALORES -->
-<section class="bg-green-800 text-white py-12 text-center">
-  <h2 class="text-2xl font-bold mb-4">🌿 Valores Scouts</h2>
+<section class="bg-gradient-to-r from-green-800 to-green-600 text-white py-16 text-center">
 
-  <p class="max-w-2xl mx-auto text-green-100">
-    Lealtad, respeto, responsabilidad, servicio, amistad, disciplina y amor por la naturaleza.
-  </p>
+<h2 class="text-3xl font-bold mb-4">
+Valores Scouts
+</h2>
+
+<p class="max-w-2xl mx-auto text-green-100 text-lg">
+Lealtad, respeto, responsabilidad, servicio, amistad, disciplina y amor por la naturaleza.
+</p>
+
 </section>
 
 <!-- CTA -->
-<section class="text-center py-12">
-  <h2 class="text-2xl font-bold mb-2">¿Querés ser Scout?</h2>
-  <p class="mb-4 text-gray-600">Sumate a un grupo cercano a tu ciudad</p>
+<section class="py-20 text-center">
 
-  <button class="bg-green-700 text-white px-6 py-3 rounded font-bold">
-    Encontrar grupo
-  </button>
+<h2 class="text-3xl font-bold mb-4">
+¿Querés ser Scout?
+</h2>
 
-  <button id="installBtn" class="bg-green-700 text-white px-6 py-3 rounded font-bold" style="display:none;">
-    Instalar App
-  </button>
+<p class="text-gray-600 mb-6">
+Sumate a un grupo cercano a tu ciudad
+</p>
+
+<button class="bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow hover:bg-green-800 transition">
+Encontrar grupo
+</button>
+
 </section>
+
 <!-- FOOTER -->
-<footer class="bg-gray-900 text-gray-300 text-center py-6 text-sm">
-  © 2026 Movimiento Scout - Todos los derechos reservados
+<footer class="bg-gray-900 text-gray-400 text-center py-8 text-sm">
+© 2026 Movimiento Scout — Todos los derechos reservados
 </footer>
 
 <script src="app.js"></script>
